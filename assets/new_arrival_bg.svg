@@ -1,0 +1,26 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 631" width="1440" height="631">
+	<defs>
+		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0,246.495,-562.888,0,719.463,.082)">
+			<stop offset="0" stop-color="#1170ff"/>
+			<stop offset="1" stop-color="#0025a8"/>
+		</linearGradient>
+		<linearGradient id="g2" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0,724.75,-724.75,0,357.375,-50)">
+			<stop offset="0" stop-color="#0633c8" stop-opacity="1"/>
+			<stop offset="1" stop-color="#0633c8" stop-opacity="0"/>
+		</linearGradient>
+		<linearGradient id="g3" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0,724.75,-724.75,0,1081.37,-50)">
+			<stop offset="0" stop-color="#0633c8" stop-opacity="1"/>
+			<stop offset="1" stop-color="#0633c8" stop-opacity="0"/>
+		</linearGradient>
+	</defs>
+	<style>
+		.s0 { fill: #343434 } 
+		.s1 { fill: url(#g1) } 
+		.s2 { opacity: .6;fill: none;stroke: url(#g2);stroke-width: 1.6 } 
+		.s3 { opacity: .6;fill: none;stroke: url(#g3);stroke-width: 1.6 } 
+	</style>
+	<path fill-rule="evenodd" class="s0" d="m-1.03 0.08h1440.99v631.03h-1440.99z"/>
+	<path fill-rule="evenodd" class="s1" d="m-1.03 0.08h1440.99v631.03h-1440.99z"/>
+	<path class="s2" d="m-4.2-50v723.95m723.15-723.15h-723.95m81.24-0.8v723.95m642.71-642.71h-723.95m161.68-81.24v723.95m562.27-562.27h-723.95m242.12-161.68v723.95m481.83-481.83h-723.95m322.56-242.12v723.95m401.39-401.39h-723.95m403-322.56v723.95m320.95-320.95h-723.95m483.44-403v723.95m240.51-240.52h-723.95m563.87-483.43v723.95m160.08-160.08h-723.95m644.31-563.87v723.95m79.64-79.64h-723.95m724.75-644.31v723.95m-0.8 0.8h-723.95"/>
+	<path class="s3" d="m719.8-50v723.95m723.15-723.15h-723.95m81.24-0.8v723.95m642.71-642.71h-723.95m161.68-81.24v723.95m562.27-562.27h-723.95m242.12-161.68v723.95m481.83-481.83h-723.95m322.56-242.12v723.95m401.39-401.39h-723.95m403-322.56v723.95m320.95-320.95h-723.95m483.43-403v723.95m240.52-240.52h-723.95m563.87-483.43v723.95m160.08-160.08h-723.95m644.31-563.87v723.95m79.64-79.64h-723.95m724.75-644.31v723.95m-0.8 0.8h-723.95"/>
+</svg>
