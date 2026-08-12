@@ -171,8 +171,7 @@ function setupMobileLoopPadding(swiper, originalSlidesHTML, repeatCount) {
   function syncActiveBullet() {
     const paginationParam = swiper.params.pagination;
     const el = paginationParam && paginationParam.el;
-    const container =
-      typeof el === "string" ? document.querySelector(el) : el;
+    const container = typeof el === "string" ? document.querySelector(el) : el;
     if (!container) return;
     const bullets = container.querySelectorAll(".swiper-pagination-bullet");
     const activeClass =
@@ -273,29 +272,106 @@ var dealsSwiper = new Swiper(".dealsSwiper", {
       // slider (see vivobook.js) — centeredSlides + loop, with the
       // padding helper below duplicating slides so the loop has enough
       // material to cycle through smoothly.
-      slidesPerView: 1.3,
+      slidesPerView: 1.2,
       spaceBetween: 16,
       centeredSlides: true,
       loop: true,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
-    576: {
+    400: {
+      slidesPerView: 1.3,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    425: {
+      slidesPerView: 1.4,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    450: {
+      slidesPerView: 1.5,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    490: {
+      slidesPerView: 1.6,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    520: {
+      slidesPerView: 1.7,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    550: {
+      slidesPerView: 1.8,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    582: {
+      slidesPerView: 1.9,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    630: {
       slidesPerView: 2,
       spaceBetween: 12,
       centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
+    666: {
+      slidesPerView: 2.1,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    700: {
+      slidesPerView: 2.2,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
     800: {
-      slidesPerView: 2.3,
+      slidesPerView: 2.2,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    860: {
+      slidesPerView: 2.4,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    930: {
+      slidesPerView: 2.6,
       spaceBetween: 12,
       centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
     1060: {
-      slidesPerView: 2.5,
+      slidesPerView: 3,
       spaceBetween: 12,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
@@ -388,7 +464,8 @@ function buildBudgetIndicators() {
   budgetIndicators = [];
   for (let i = 0; i <= budgetMaxIndex; i++) {
     const dot = document.createElement("span");
-    dot.className = "budget-indicator" + (i === budgetCurrentIndex ? " active" : "");
+    dot.className =
+      "budget-indicator" + (i === budgetCurrentIndex ? " active" : "");
     dot.addEventListener("click", () => {
       budgetCurrentIndex = Math.min(i, budgetMaxIndex);
       updateBudgetCarousel();
@@ -486,8 +563,7 @@ function loopBudgetCarousel(direction) {
   // isn't used unconditionally here in case rawMoveAmount ever comes out
   // negative (it stringifies as the invalid double-negative "--54.6px",
   // which CSS silently drops) — the sign is flipped explicitly first.
-  const cloneTrackPosition =
-    direction === "next" ? budgetTotalCards + 2 : 1;
+  const cloneTrackPosition = direction === "next" ? budgetTotalCards + 2 : 1;
   const rawMoveAmount =
     cloneTrackPosition * (cardWidth + gap) - (containerWidth - cardWidth) / 2;
 
@@ -1129,7 +1205,7 @@ const bestSellingSwiper = new Swiper(".bestSellingSwiper", {
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
-    1008:{
+    1008: {
       slidesPerView: 3,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
@@ -1258,7 +1334,9 @@ function updateSmartChoicesCarousel(instant = false) {
       const trackWidth = smartChoicesTrack.scrollWidth;
       const maxScroll = Math.max(0, trackWidth - wrapperWidth);
       const rawMove =
-        (cardWidth + gap) * smartCurrentIndex + cardWidth / 2 - wrapperWidth / 2;
+        (cardWidth + gap) * smartCurrentIndex +
+        cardWidth / 2 -
+        wrapperWidth / 2;
       moveAmount = Math.min(maxScroll, Math.max(0, rawMove));
       maxMoveAmount = maxScroll;
     } else {
@@ -1939,7 +2017,8 @@ const collectionsSwiper = new Swiper(".collectionsSwiper", {
       const content = slide.querySelector(".content-div-arrival");
       if (content) {
         content.style.opacity = String(progress);
-        content.style.pointerEvents = progress > VISIBLE_THRESHOLD ? "auto" : "none";
+        content.style.pointerEvents =
+          progress > VISIBLE_THRESHOLD ? "auto" : "none";
       }
 
       slide.classList.remove("is-center");
