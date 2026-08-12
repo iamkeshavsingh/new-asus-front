@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <circle class="timer-circle"
         cx="20" cy="20" r="19"
         fill="none"
-        stroke="#ffffff"
+        stroke="#F51928"
         stroke-width="2"
         stroke-dasharray="119.38"
         stroke-dashoffset="119.38"
@@ -164,7 +164,9 @@ function setupMobileLoopPadding(swiper, originalSlidesHTML, repeatCount) {
   const originalCount = originalSlidesHTML.length;
   if (!originalCount) return;
   repeatCount = repeatCount || 2;
-  let duplicated = false;
+  // Tracks how many copies of the real slide set are currently in the DOM
+  // (1 = untouched). Starts at 1 because that's the natural pre-sync state.
+  let duplicated = 1;
 
   function syncActiveBullet() {
     const paginationParam = swiper.params.pagination;
@@ -182,15 +184,42 @@ function setupMobileLoopPadding(swiper, originalSlidesHTML, repeatCount) {
   }
 
   function sync() {
-    const shouldDuplicate = !!swiper.params.centeredSlides;
-    if (shouldDuplicate !== duplicated) {
+    const isLoop = !!swiper.params.loop;
+    // Swiper's loop mode needs roughly slidesPerView * 2 real slides to
+    // cycle without a visible gap at the wrap-around point. If the current
+    // breakpoint's slidesPerView (e.g. a wide-screen 3.4-up view) needs more
+    // real slides than we have, pad up to a whole multiple of the original
+    // set — on top of the existing centered-mobile padding, which some
+    // sliders still rely on independently of this.
+    // slidesPerView: "auto" (fixed-width cards, e.g. productSliderSwiper)
+    // has no fixed number to read from params — ask Swiper how many
+    // actually fit right now instead.
+    let spv;
+    if (swiper.params.slidesPerView === "auto") {
+      spv =
+        typeof swiper.slidesPerViewDynamic === "function"
+          ? swiper.slidesPerViewDynamic("current", true)
+          : 1;
+    } else {
+      spv =
+        typeof swiper.params.slidesPerView === "number"
+          ? swiper.params.slidesPerView
+          : 1;
+    }
+    const neededForLoop = isLoop ? Math.ceil(spv) * 2 : 0;
+    const loopTimes = neededForLoop
+      ? Math.ceil(neededForLoop / originalCount)
+      : 1;
+    const centeredTimes = swiper.params.centeredSlides ? repeatCount : 1;
+    const times = isLoop ? Math.max(loopTimes, centeredTimes) : 1;
+
+    if (times !== duplicated) {
       if (swiper.params.loop) swiper.loopDestroy();
       swiper.removeAllSlides();
       const html = [];
-      const times = shouldDuplicate ? repeatCount : 1;
       for (let i = 0; i < times; i++) html.push(...originalSlidesHTML);
       swiper.appendSlide(html);
-      duplicated = shouldDuplicate;
+      duplicated = times;
       if (swiper.params.loop) swiper.loopCreate();
       swiper.update();
     }
