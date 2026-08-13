@@ -1190,39 +1190,129 @@ const bestSellingSwiper = new Swiper(".bestSellingSwiper", {
 
   breakpoints: {
     0: {
-      // Same "active card centered" behaviour as index.html's Best
-      // Selling slider (see vivobook.js) — centeredSlides + loop, with
-      // the padding helper below duplicating slides so the loop has
-      // enough material to cycle through smoothly.
-      slidesPerView: 1.3,
+      // Same "active card centered" behaviour as index.html's deals
+      // slider (see vivobook.js) — centeredSlides + loop, with the
+      // padding helper below duplicating slides so the loop has enough
+      // material to cycle through smoothly.
+      slidesPerView: 1.2,
       spaceBetween: 16,
       centeredSlides: true,
       loop: true,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
-    576: {
+    400: {
+      slidesPerView: 1.3,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    425: {
+      slidesPerView: 1.4,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    450: {
+      slidesPerView: 1.5,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    490: {
+      slidesPerView: 1.6,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    520: {
+      slidesPerView: 1.7,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    550: {
+      slidesPerView: 1.8,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    582: {
+      slidesPerView: 1.9,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    630: {
       slidesPerView: 2,
+      spaceBetween: 12,
+      centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
-    768: {
-      slidesPerView: 2.5,
+    666: {
+      slidesPerView: 2.1,
+      spaceBetween: 12,
+      centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
-    1008: {
+    700: {
+      slidesPerView: 2.1,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    800: {
+      slidesPerView: 2.2,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    860: {
+      slidesPerView: 2.4,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    930: {
+      slidesPerView: 2.6,
+      spaceBetween: 12,
+      centeredSlides: false,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15,
+    },
+    1060: {
       slidesPerView: 3,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    1200: {
-      slidesPerView: 3.2,
+      spaceBetween: 12,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
-    1350: {
+    1200: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+    },
+    1400: {
       slidesPerView: 4,
+      spaceBetween: 20,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+    },
+    1720: {
+      slidesPerView: 5,
+      spaceBetween: 20,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
