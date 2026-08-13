@@ -1511,8 +1511,8 @@ body {
 
 /* Badge colors */
 .badge-discount {
-  background-color: #D8FF4D6B;
-  color: #FFFFFF !important;
+  background-color: #d8ff4d6b;
+  color: #ffffff !important;
   font-size: 14px;
   line-height: 26px;
   padding: 0px 10px;
@@ -9294,7 +9294,7 @@ a.navbar-brand img {
     margin: 0;
   }
 
-  .mobie-hide{
+  .mobie-hide {
     display: none;
   }
 
