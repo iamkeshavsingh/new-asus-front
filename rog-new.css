@@ -1511,8 +1511,8 @@ body {
 
 /* Badge colors */
 .badge-discount {
-  background-color: #d8ff4d1f;
-  color: #bbef02 !important;
+  background-color: #D8FF4D6B;
+  color: #FFFFFF !important;
   font-size: 14px;
   line-height: 26px;
   padding: 0px 10px;
@@ -7174,6 +7174,7 @@ a.navbar-brand img {
   .deals-main-heading > h2 {
     font-size: 20px !important;
     margin-bottom: 0px !important;
+    line-height: 31px !important;
   }
 
   .deals-main-heading > img {
@@ -8515,7 +8516,7 @@ a.navbar-brand img {
 
   .collections-section h2 span {
     font-size: 22px !important;
-    margin-left: 35px !important;
+    /* margin-left: 35px !important; */
   }
 
   /* Carousel wrapper */
@@ -9071,9 +9072,12 @@ a.navbar-brand img {
   }
 
   .arrival-specs-section .badge-discount {
-    background: #d4f4dd;
-    color: #2d7a3e;
+    /* background: #d4f4dd;
+    color: #2d7a3e; */
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .arrival-specs-section .text-asus {
@@ -9297,6 +9301,10 @@ a.navbar-brand img {
     color: #d9d9d6;
     font-weight: 400;
     margin: 0;
+  }
+
+  .mobie-hide{
+    display: none;
   }
 
   .video-product-thumb {
@@ -10263,7 +10271,7 @@ a.navbar-brand img {
   }
 
   .offer-section {
-    padding: 40px 0px 40px 20px !important;
+    padding: 40px 0px 40px 0px !important;
     margin-bottom: 0px !important;
   }
 
@@ -10647,6 +10655,7 @@ a.navbar-brand img {
   .header-wrapper {
     flex-direction: column;
     gap: 10px;
+    padding-left: 20px;
   }
 }
 
