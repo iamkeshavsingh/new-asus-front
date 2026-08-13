@@ -3077,9 +3077,9 @@ body {
   }
 
   .shop-by-budget-section .budget-products-track .deal-card {
-    flex: 0 0 72% !important;
+    /* flex: 0 0 72% !important;
     min-width: 72% !important;
-    max-width: 72% !important;
+    max-width: 72% !important; */
   }
 
   .shop-by-budget-section .budget-products-track .deal-card[data-clone] {
@@ -4907,10 +4907,17 @@ body {
   margin-right: 20px;
 }
 
-.productSliderSwiper .deal-card {
-  width: 350px;
-  max-width: 350px;
-  min-width: 350px;
+.new-slider-product-css .rogMultiScreenBgImg {
+  height: 347px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-position-x: 0px;
+}
+
+.new-slider-product-css .rogMultiScreenBgImg .product-image {
+  margin-top: -20px;
+  height: auto;
 }
 
 .tab-arrow-product {
@@ -7485,7 +7492,7 @@ a.navbar-brand img {
     flex-direction: row !important;
     align-items: flex-end !important;
     /* border: 1px solid black; */
-    gap: 30px !important;
+    gap: 0px !important;
     height: 88px;
     margin-top: 0px;
   }
@@ -10690,6 +10697,7 @@ a.navbar-brand img {
     display: block !important;
   }
 }
+
 @media (min-width: 999px) and (max-width: 1024px) {
   .feature-section .col-md-6:nth-child(2) .scan-box {
     position: relative !important;
@@ -10698,16 +10706,19 @@ a.navbar-brand img {
     width: 50% !important;
   }
 }
+
 @media screen and (min-width: 769px) {
   .containerSpacing {
     padding: 0 48px;
   }
 }
+
 @media screen and (max-width: 1920px) {
   .rogMultiScreenBgColor {
     background-color: #101521;
     /* background-color: #121826; */
   }
+
   .rogMultiScreenBgImg {
     background-image: url("/assets/rog/bg1920.png");
     background-position: center;
@@ -10717,6 +10728,21 @@ a.navbar-brand img {
     background-position-y: 0px;
     background-position-x: 0px;
   }
+
+  .rogMultiScreenBgImg2 {
+    background-image: url("/assets/rog/bg1440.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+    background-position-y: -75px;
+    background-position-x: -22px;
+  }
+  .productSliderSwiper .deal-section-space-top {
+    padding-top: 15px;
+  }
+
   .deal-section-space-top {
     padding-top: 35px;
   }
@@ -10728,18 +10754,21 @@ a.navbar-brand img {
     background-position-x: -15px;
   }
 }
+
 @media screen and (max-width: 1810px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1770px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1730px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -10753,124 +10782,166 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1650px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1610px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1570px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -10px;
   }
 }
+
 @media screen and (max-width: 1530px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1490px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1460px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1400px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1330px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1300px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1270px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1240px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1210px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 10px;
   }
 }
+
 @media screen and (max-width: 1160px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1130px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -10px;
   }
 }
+
 @media screen and (max-width: 1100px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1070px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1060px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -10px;
   }
 }
+
 @media screen and (max-width: 1040px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1024px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 10px;
   }
+
   button.btn-primary.buy-btn,
   .btn-primary.buy-btn {
     padding: 10px !important;
     font-size: 14px !important;
     width: 108px !important;
+  }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -40px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -65px;
+    background-position-x: -3px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -120px;
+    background-position-x: 8px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -105px;
+    background-position-x: 8px;
   }
 }
 @media screen and (max-width: 950px) {
@@ -10878,11 +10949,44 @@ a.navbar-brand img {
     background-position-y: 0px;
     background-position-x: 0px;
   }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -95px;
+    background-position-x: 8px;
+  }
 }
+@media screen and (max-width: 920px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -85px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 890px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -75px;
+    background-position-x: 0px;
+  }
+}
+
 @media screen and (max-width: 860px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 10px;
+  }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -65px;
+    background-position-x: -5px;
+  }
+}
+@media screen and (max-width: 840px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -60px;
+    background-position-x: -10px;
+  }
+}
+@media screen and (max-width: 820px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -50px;
+    background-position-x: -15px;
   }
 }
 
@@ -10892,12 +10996,24 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 800px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -95px;
+    background-position-x: 0px;
+  }
 }
+@media screen and (max-width: 780px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -80px;
+    background-position-x: 0px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -10905,16 +11021,63 @@ a.navbar-brand img {
     height: 410px;
   }
 }
+@media screen and (max-width: 750px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -73px;
+    background-position-x: 0px;
+  }
+}
 @media screen and (max-width: 730px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 10px;
   }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -65px;
+    background-position-x: -3px;
+  }
 }
+@media screen and (max-width: 720px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -59px;
+    background-position-x: -10px;
+  }
+}
+
 @media screen and (max-width: 705px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -97px;
+    background-position-x: -10px;
+  }
+}
+@media screen and (max-width: 680px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -87px;
+    background-position-x: -10px;
+  }
+}
+@media screen and (max-width: 660px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -77px;
+    background-position-x: -10px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -67px;
+    background-position-x: -10px;
+  }
+}
+@media screen and (max-width: 620px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -55px;
+    background-position-x: -10px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -10923,22 +11086,199 @@ a.navbar-brand img {
     background-position-x: -10px;
     height: 390px;
   }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -122px;
+    background-position-x: 0px;
+  }
 }
+@media screen and (max-width: 590px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -110px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -100px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 570px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -90px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -90px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -80px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -70px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -60px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -120px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 490px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -110px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -100px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -90px;
+    background-position-x: 0px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -83px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -73px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 440px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -63px;
+    background-position-x: 0px;
+  }
+}
+@media screen and (max-width: 430px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -53px;
+    background-position-x: 0px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .rogMultiScreenBgImg2 {
+    background-position-y: -47px;
+    background-position-x: 0px;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -65px;
+    background-position-x: 0px;
+  }
 }
+@media screen and (max-width: 390px) {
+}
+
 @media screen and (max-width: 380px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -10px;
   }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -45px;
+    background-position-x: 0px;
+  }
 }
+
 @media screen and (max-width: 370px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
+  }
+  .rogMultiScreenBgImg2 {
+    background-position-y: -75px;
+    background-position-x: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .new-slider-product-css .deal-section-space-top {
+    padding-top: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .new-slider-product-css .swiper-slide {
+    width: 60% !important;
+  }
+
+  .new-slider-product-css .rogMultiScreenBgImg {
+    height: 330px;
+  }
+}
+
+@media (max-width: 520px) {
+  .new-slider-product-css .swiper-slide {
+    width: 65% !important;
+  }
+}
+
+@media (max-width: 486px) {
+  .new-slider-product-css .swiper-slide {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .new-slider-product-css .swiper-slide {
+    width: 75% !important;
+  }
+}
+
+@media (max-width: 445px) {
+  .new-slider-product-css .swiper-slide {
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 415px) {
+  .new-slider-product-css .swiper-slide {
+    width: 85% !important;
+  }
+}
+
+@media (max-width: 391px) {
+  .new-slider-product-css .swiper-slide {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 373px) {
+  .new-slider-product-css .swiper-slide {
+    width: 95% !important;
   }
 }
