@@ -4907,10 +4907,17 @@ body {
   margin-right: 20px;
 }
 
-.productSliderSwiper .deal-card {
-  width: 350px;
-  max-width: 350px;
-  min-width: 350px;
+.new-slider-product-css .rogMultiScreenBgImg {
+  height: 347px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-position-x: 0px;
+}
+
+.new-slider-product-css .rogMultiScreenBgImg .product-image {
+  margin-top: -20px;
+  height: auto;
 }
 
 .tab-arrow-product {
@@ -10690,6 +10697,7 @@ a.navbar-brand img {
     display: block !important;
   }
 }
+
 @media (min-width: 999px) and (max-width: 1024px) {
   .feature-section .col-md-6:nth-child(2) .scan-box {
     position: relative !important;
@@ -10698,16 +10706,19 @@ a.navbar-brand img {
     width: 50% !important;
   }
 }
+
 @media screen and (min-width: 769px) {
   .containerSpacing {
     padding: 0 48px;
   }
 }
+
 @media screen and (max-width: 1920px) {
   .rogMultiScreenBgColor {
     background-color: #101521;
     /* background-color: #121826; */
   }
+
   .rogMultiScreenBgImg {
     background-image: url("/assets/rog/bg1920.png");
     background-position: center;
@@ -10728,6 +10739,10 @@ a.navbar-brand img {
     background-position-y: -75px;
     background-position-x: -22px;
   }
+  .productSliderSwiper .deal-section-space-top {
+    padding-top: 15px;
+  }
+
   .deal-section-space-top {
     padding-top: 35px;
   }
@@ -10739,18 +10754,21 @@ a.navbar-brand img {
     background-position-x: -15px;
   }
 }
+
 @media screen and (max-width: 1810px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1770px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1730px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -10764,119 +10782,139 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1650px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1610px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1570px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -10px;
   }
 }
+
 @media screen and (max-width: 1530px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1490px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1460px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1400px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1330px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1300px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1270px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1240px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1210px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 10px;
   }
 }
+
 @media screen and (max-width: 1160px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 1130px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -10px;
   }
 }
+
 @media screen and (max-width: 1100px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1070px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -30px;
   }
 }
+
 @media screen and (max-width: 1060px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -10px;
   }
 }
+
 @media screen and (max-width: 1040px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: -20px;
   }
 }
+
 @media screen and (max-width: 1024px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
     background-position-x: 10px;
   }
+
   button.btn-primary.buy-btn,
   .btn-primary.buy-btn {
     padding: 10px !important;
@@ -10906,7 +10944,6 @@ a.navbar-brand img {
     background-position-x: 8px;
   }
 }
-
 @media screen and (max-width: 950px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -10929,6 +10966,7 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 860px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -10958,6 +10996,7 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 800px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -10974,6 +11013,7 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -11003,6 +11043,7 @@ a.navbar-brand img {
     background-position-x: -10px;
   }
 }
+
 @media screen and (max-width: 705px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -11148,6 +11189,7 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 400px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -11160,6 +11202,7 @@ a.navbar-brand img {
 }
 @media screen and (max-width: 390px) {
 }
+
 @media screen and (max-width: 380px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -11170,6 +11213,7 @@ a.navbar-brand img {
     background-position-x: 0px;
   }
 }
+
 @media screen and (max-width: 370px) {
   .rogMultiScreenBgImg {
     background-position-y: 0px;
@@ -11178,5 +11222,63 @@ a.navbar-brand img {
   .rogMultiScreenBgImg2 {
     background-position-y: -75px;
     background-position-x: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .new-slider-product-css .deal-section-space-top {
+    padding-top: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .new-slider-product-css .swiper-slide {
+    width: 60% !important;
+  }
+
+  .new-slider-product-css .rogMultiScreenBgImg {
+    height: 330px;
+  }
+}
+
+@media (max-width: 520px) {
+  .new-slider-product-css .swiper-slide {
+    width: 65% !important;
+  }
+}
+
+@media (max-width: 486px) {
+  .new-slider-product-css .swiper-slide {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .new-slider-product-css .swiper-slide {
+    width: 75% !important;
+  }
+}
+
+@media (max-width: 445px) {
+  .new-slider-product-css .swiper-slide {
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 415px) {
+  .new-slider-product-css .swiper-slide {
+    width: 85% !important;
+  }
+}
+
+@media (max-width: 391px) {
+  .new-slider-product-css .swiper-slide {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 373px) {
+  .new-slider-product-css .swiper-slide {
+    width: 95% !important;
   }
 }
