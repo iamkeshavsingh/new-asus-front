@@ -343,7 +343,7 @@ var dealsSwiper = new Swiper(".dealsSwiper", {
       slidesOffsetAfter: 15,
     },
     700: {
-      slidesPerView: 2.2,
+      slidesPerView: 2.1,
       spaceBetween: 12,
       centeredSlides: false,
       slidesOffsetBefore: 15,
@@ -384,6 +384,12 @@ var dealsSwiper = new Swiper(".dealsSwiper", {
     },
     1400: {
       slidesPerView: 4,
+      spaceBetween: 20,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+    },
+    1720: {
+      slidesPerView: 5,
       spaceBetween: 20,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
