@@ -10348,13 +10348,13 @@ a.navbar-brand img {
     padding: 12px !important;
   }
 
-  .choose-offers-carousel .deal-card,
+  /* .choose-offers-carousel .deal-card,
   .deals-section .deal-card,
   .shop-by-budget-section .d-flex.justify-content-between,
   .shop-by-color-space-top,
   .selling-carousel .deal-card {
     padding-right: 16px !important;
-  }
+  } */
 
   .productSliderSwiper .deal-card {
     padding-right: 12px !important;
