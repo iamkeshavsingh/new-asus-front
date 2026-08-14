@@ -3065,7 +3065,21 @@
     <div class="container-fluid px-3">
       <div class="vivobook-pro-container rounded-4 position-relative">
         <!-- Background Image -->
-        <img src="assets/rog/rog-banner-mobile.png" alt="Vivobook Pro Background" class="vivobook-bg-image" />
+        <!-- <img src="assets/rog/rog-banner-mobile.png" alt="Vivobook Pro Background" class="vivobook-bg-image" /> -->
+        <picture>
+          <!-- 700px to 1024px -->
+          <source
+            media="(min-width: 601px) and (max-width: 1024px)"
+            srcset="assets/rog/rog-banner-tablet.jpg"
+          />
+
+          <!-- Default / mobile -->
+          <img
+            src="assets/rog/rog-banner-mobile.png"
+            alt="Vivobook Pro Background"
+            class="vivobook-bg-image"
+          />
+        </picture>
 
         <!-- Content Overlay -->
         <div class="vivobook-content">
