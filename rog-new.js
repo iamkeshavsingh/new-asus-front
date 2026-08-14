@@ -2076,105 +2076,70 @@ const colorSwiper = new Swiper(".colorSwiper", {
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
-    400: {
-      slidesPerView: 1.3,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    425: {
-      slidesPerView: 1.4,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    450: {
+
+    431: {
       slidesPerView: 1.5,
       spaceBetween: 12,
       centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
-    490: {
-      slidesPerView: 1.6,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    520: {
-      slidesPerView: 1.7,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    550: {
-      slidesPerView: 1.8,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    582: {
-      slidesPerView: 1.9,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    630: {
+
+    551: {
       slidesPerView: 2,
       spaceBetween: 12,
       centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
-    666: {
-      slidesPerView: 2.1,
+
+    640: {
+      slidesPerView: 2.5,
       spaceBetween: 12,
       centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
-    700: {
-      slidesPerView: 2.1,
+
+    740: {
+      slidesPerView: 3,
       spaceBetween: 12,
       centeredSlides: false,
       slidesOffsetBefore: 15,
       slidesOffsetAfter: 15,
     },
-    800: {
-      slidesPerView: 2.2,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    860: {
-      slidesPerView: 2.4,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    930: {
-      slidesPerView: 2.6,
-      spaceBetween: 12,
-      centeredSlides: false,
-      slidesOffsetBefore: 15,
-      slidesOffsetAfter: 15,
-    },
-    1060: {
+    1024: {
       slidesPerView: 3,
       spaceBetween: 12,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
-    1200: {
-      slidesPerView: 3,
+    1070: {
+      slidesPerView: 3.2,
+      spaceBetween: 12,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+    },
+    1180: {
+      slidesPerView: 3.5,
+      spaceBetween: 12,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+    },
+    1220: {
+      slidesPerView: 3.7,
+      spaceBetween: 12,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+    },
+    1250: {
+      slidesPerView: 3.8,
+      spaceBetween: 12,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+    },
+    1300: {
+      slidesPerView: 4,
       spaceBetween: 20,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
