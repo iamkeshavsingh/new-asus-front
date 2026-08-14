@@ -11028,3 +11028,29 @@ a.navbar-brand img {
     width: 95% !important;
   }
 }
+
+@media (min-width: 600px) and (max-width: 730px) {
+  .new-arrivals-image-wrapper .bottom-content {
+    width: 60vw;
+    max-width: 60vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 676px) and (max-width: 690px) {
+  .new-icici {
+    position: absolute;
+    top: 310px;
+    left: 20%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 675px) {
+  .new-icici {
+    position: absolute;
+    top: 330px;
+    left: 20%;
+  }
+}
