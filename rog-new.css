@@ -10084,12 +10084,32 @@ a.navbar-brand img {
   }
 }
 
-@media (min-width: 700px) and (max-width: 1023px) {
+@media (min-width: 600px) and (max-width: 1023px) {
   .hero-section {
-    background-size: 100vw 600px !important;
-    height: 600px !important;
+    background-size: 100vw 400px !important;
+    height: 400px !important;
+    background-image: url(assets/rog/tablet-hero-bg.jpg) !important;
   }
 
+  .banner-content-left-space {
+    padding-left: 0px;
+    position: relative;
+    bottom: 100px;
+  }
+
+}
+
+
+@media (min-width: 530px) and (max-width: 600px) {
+  .hero-section {
+    background-size: 100vw 500px !important;
+    height: 500px !important;
+  }
+
+
+}
+
+@media (min-width: 700px) and (max-width: 1023px) {
   .blog-card {
     flex: 0 0 55% !important;
     min-width: 55% !important;
