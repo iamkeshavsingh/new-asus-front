@@ -1623,6 +1623,10 @@ var chooseOffersSwiper = new Swiper(".choose-offers-swiper", {
         ? `<span class="${className}"></span>`
         : "",
   },
+  navigation: {
+    nextEl: ".choose-carousel-arrow-right",
+    prevEl: ".choose-carousel-arrow-left",
+  },
   breakpoints: {
     320: {
       slidesPerView: 1.3,
