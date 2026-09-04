@@ -1,4 +1,4 @@
-console.log("Vivobook.js loaded!");
+console.log("rog.js loaded!");
 
 // <!-- banner -->
 document.addEventListener("DOMContentLoaded", function () {
@@ -647,13 +647,13 @@ function handleBudgetSwipe() {
   }
 
   // Keep arrow states in sync after a swipe, same as click/resize handlers
-  budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
-  budgetLeftArrow.style.cursor =
-    budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
-  budgetRightArrow.style.opacity =
-    budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
-  budgetRightArrow.style.cursor =
-    budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
+  // budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
+  // budgetLeftArrow.style.cursor =
+  //   budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
+  // budgetRightArrow.style.opacity =
+  //   budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
+  // budgetRightArrow.style.cursor =
+  //   budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
 }
 
 budgetLeftArrow.addEventListener("click", () => {
@@ -663,9 +663,9 @@ budgetLeftArrow.addEventListener("click", () => {
     updateBudgetCarousel();
   }
   // Disable arrow if at leftmost position
-  budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
-  budgetLeftArrow.style.cursor =
-    budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
+  // budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
+  // budgetLeftArrow.style.cursor =
+  //   budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
 });
 
 budgetRightArrow.addEventListener("click", () => {
@@ -675,10 +675,10 @@ budgetRightArrow.addEventListener("click", () => {
     updateBudgetCarousel();
   }
   // Disable arrow if at rightmost position
-  budgetRightArrow.style.opacity =
-    budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
-  budgetRightArrow.style.cursor =
-    budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
+  // budgetRightArrow.style.opacity =
+  //   budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
+  // budgetRightArrow.style.cursor =
+  //   budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
 });
 
 // Initialize — measure cards-per-view for the current breakpoint, build the
@@ -687,8 +687,8 @@ budgetRightArrow.addEventListener("click", () => {
 recomputeBudgetLayout();
 updateBudgetCarousel();
 // Set initial arrow states
-budgetLeftArrow.style.opacity = "0.5";
-budgetLeftArrow.style.cursor = "not-allowed";
+// budgetLeftArrow.style.opacity = "0.5";
+// budgetLeftArrow.style.cursor = "not-allowed";
 
 // Handle window resize — a breakpoint change can change how many cards fit
 // per view, so re-measure and rebuild the dots, not just reposition the track.
@@ -699,13 +699,13 @@ window.addEventListener("resize", () => {
     recomputeBudgetLayout();
     updateBudgetCarousel();
     // Update arrow states after resize
-    budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
-    budgetLeftArrow.style.cursor =
-      budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
-    budgetRightArrow.style.opacity =
-      budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
-    budgetRightArrow.style.cursor =
-      budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
+    // budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
+    // budgetLeftArrow.style.cursor =
+    //   budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
+    // budgetRightArrow.style.opacity =
+    //   budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
+    // budgetRightArrow.style.cursor =
+    //   budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
   }, 250);
 });
 
@@ -805,13 +805,13 @@ function filterCardsByPrice() {
 
   // Update arrow states
   if (budgetLeftArrow) {
-    budgetLeftArrow.style.opacity = "0.5";
-    budgetLeftArrow.style.cursor = "not-allowed";
+    // budgetLeftArrow.style.opacity = "0.5";
+    // budgetLeftArrow.style.cursor = "not-allowed";
   }
 
   if (budgetRightArrow) {
-    budgetRightArrow.style.opacity = newMaxIndex > 0 ? "1" : "0.5";
-    budgetRightArrow.style.cursor = newMaxIndex > 0 ? "pointer" : "not-allowed";
+    // budgetRightArrow.style.opacity = newMaxIndex > 0 ? "1" : "0.5";
+    // budgetRightArrow.style.cursor = newMaxIndex > 0 ? "pointer" : "not-allowed";
   }
 }
 
@@ -1175,17 +1175,17 @@ const bestSellingSwiper = new Swiper(".bestSellingSwiper", {
   pagination: {
     el: ".bestSellingswiper-pagination",
     clickable: true,
-    // Padding duplicates real slides for the mobile loop — without this,
-    // pagination would render one bullet per duplicate too.
     renderBullet: (index, className) =>
+      // Padding duplicates real slides for the mobile loop — without this,
+      // pagination would render one bullet per duplicate too.
       index < bestSellingOriginalSlidesHTML.length
         ? `<span class="${className}"></span>`
         : "",
   },
 
   navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
+    nextEl: ".seller-carousel-arrow-right",
+    prevEl: ".seller-carousel-arrow-left",
   },
 
   breakpoints: {
@@ -1295,24 +1295,28 @@ const bestSellingSwiper = new Swiper(".bestSellingSwiper", {
     1060: {
       slidesPerView: 3,
       spaceBetween: 12,
+      loop: false,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
     1200: {
       slidesPerView: 3,
       spaceBetween: 20,
+      loop: false,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
     1400: {
       slidesPerView: 4,
       spaceBetween: 20,
+      loop: false,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },
     1720: {
       slidesPerView: 5,
       spaceBetween: 20,
+      loop: false,
       slidesOffsetBefore: 0,
       slidesOffsetAfter: 0,
     },

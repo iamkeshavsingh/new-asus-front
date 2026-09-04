@@ -47,8 +47,8 @@ var swiper = new Swiper(".myPopularSwiper", {
     clickable: true,
   },
   navigation: {
-    nextEl: ".swiper-button-next-pop",
-    prevEl: ".swiper-button-prev-pop",
+    nextEl: ".popular-carousel-arrow-right",
+    prevEl: ".popular-carousel-arrow-left",
   },
 
   breakpoints: {
@@ -82,36 +82,45 @@ window.addEventListener("resize", () => {
     swiper.update();
   }
 });
-var productSlider = new Swiper(".productSliderSwiper", {
-  slidesPerView: 2,
-  spaceBetween: 20,
-  loop: true,
-  pagination: {
-    el: ".product-slider-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".product-slider-next-top",
-    prevEl: ".product-slider-prev-top",
-  },
+// Only init here if the element is already in the DOM (i.e. not loaded via
+// fetch). rog-new.html fetches the component and calls initializeProductSlider()
+// after the HTML lands — running this init first on an empty selector would
+// create a dead Swiper instance that blocks the real one from initialising.
+if (document.querySelector(".productSliderSwiper .swiper-slide")) {
+  var productSlider = new Swiper(".productSliderSwiper", {
+    slidesPerView: 2,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".product-slider-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".product-slider-next-top",
+      prevEl: ".product-slider-prev-top",
+    },
 
-  // Responsive Breakpoints
-  breakpoints: {
-    0: {
-      slidesPerView: 1.2,
-      spaceBetween: 15,
-      centeredSlides: false,
+    // Responsive Breakpoints
+    breakpoints: {
+      0: {
+        slidesPerView: 1.2,
+        spaceBetween: 15,
+        centeredSlides: true,
+        loop: true,
+      },
+      768: {
+        slidesPerView: 1.5,
+        spaceBetween: 15,
+        centeredSlides: false,
+      },
+      992: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        centeredSlides: false,
+      },
     },
-    768: {
-      slidesPerView: 1.5,
-      spaceBetween: 15,
-    },
-    992: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-  },
-});
+  });
+}
 
 var processorSwiper = new Swiper(".myProcessorSwiper", {
   slidesPerView: 4,
