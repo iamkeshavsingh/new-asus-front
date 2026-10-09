@@ -160,11 +160,20 @@ document.addEventListener("DOMContentLoaded", function () {
 // `pagination.renderBullet` (passed in the swiper's own config) must
 // truncate to `originalCount` bullets for part of this to work; this
 // helper handles resetting position and keeping the active bullet in sync.
-function setupMobileLoopPadding(swiper, originalSlidesHTML, repeatCount) {
+// desktopRepeatCount (optional, default 1 = no duplication) pads the
+// non-centered (desktop/tablet) layout too, for sliders whose real card
+// count is too small for Swiper's loop to fill the view past the last card.
+function setupMobileLoopPadding(
+  swiper,
+  originalSlidesHTML,
+  repeatCount,
+  desktopRepeatCount,
+) {
   const originalCount = originalSlidesHTML.length;
   if (!originalCount) return;
   repeatCount = repeatCount || 2;
-  let duplicated = false;
+  desktopRepeatCount = desktopRepeatCount || 1;
+  let currentTimes = 1;
 
   function syncActiveBullet() {
     const paginationParam = swiper.params.pagination;
@@ -183,15 +192,16 @@ function setupMobileLoopPadding(swiper, originalSlidesHTML, repeatCount) {
   }
 
   function sync() {
-    const shouldDuplicate = !!swiper.params.centeredSlides;
-    if (shouldDuplicate !== duplicated) {
+    const times = swiper.params.centeredSlides
+      ? repeatCount
+      : desktopRepeatCount;
+    if (times !== currentTimes) {
       if (swiper.params.loop) swiper.loopDestroy();
       swiper.removeAllSlides();
       const html = [];
-      const times = shouldDuplicate ? repeatCount : 1;
       for (let i = 0; i < times; i++) html.push(...originalSlidesHTML);
       swiper.appendSlide(html);
-      duplicated = shouldDuplicate;
+      currentTimes = times;
       if (swiper.params.loop) swiper.loopCreate();
       swiper.update();
     }
@@ -316,11 +326,72 @@ const budgetIndicators = document.querySelectorAll(".budget-indicator");
 
 let budgetCurrentIndex = 0;
 const budgetTotalCards = budgetCards.length;
-const budgetCardsToShow = 4; // Number of cards visible at once
-const budgetMaxIndex = budgetTotalCards - budgetCardsToShow;
+// Measured from the real track/container widths (see
+// recomputeBudgetLayout) instead of a hardcoded 4 — on wide screens (e.g.
+// 1920px) all 6 cards fit at once, and a fixed count let the carousel keep
+// paging right into empty space.
+let budgetCardsToShow = 4;
+let budgetMaxIndex = Math.max(0, budgetTotalCards - budgetCardsToShow);
+// Desktop: furthest the track can move before the last card (plus the end
+// spacer) sits flush against the right edge.
+let budgetMaxMove = Infinity;
 
 function isBudgetMobilePeekView() {
   return window.matchMedia("(max-width: 767.98px)").matches;
+}
+
+function getBudgetVisibleCardCount() {
+  return Array.from(budgetCards).filter((c) => c.style.display !== "none")
+    .length;
+}
+
+function recomputeBudgetLayout() {
+  const visibleCount = getBudgetVisibleCardCount();
+
+  if (isBudgetMobilePeekView() || !budgetCarousel || !budgetProductsContainer) {
+    // Mobile pages one centered card at a time (and loops), so every card
+    // is its own position.
+    budgetCardsToShow = 1;
+    budgetMaxIndex = Math.max(0, visibleCount - 1);
+    budgetMaxMove = Infinity;
+  } else {
+    const cardWidth = budgetCards[0].offsetWidth;
+    const gap = parseFloat(window.getComputedStyle(budgetCarousel).columnGap) || 12;
+    const step = cardWidth + gap;
+    const spacerWidth = budgetStartSpacer
+      ? budgetStartSpacer.getBoundingClientRect().width
+      : 0;
+    const containerWidth = budgetProductsContainer.clientWidth;
+
+    budgetMaxMove = Math.max(0, budgetCarousel.scrollWidth - containerWidth);
+    budgetMaxIndex =
+      budgetMaxMove <= 1 || !step
+        ? 0
+        : Math.max(1, Math.ceil((budgetMaxMove - spacerWidth) / step));
+    budgetMaxIndex = Math.min(budgetMaxIndex, Math.max(0, visibleCount - 1));
+    budgetCardsToShow = Math.max(1, visibleCount - budgetMaxIndex);
+  }
+
+  if (budgetCurrentIndex > budgetMaxIndex) budgetCurrentIndex = budgetMaxIndex;
+
+  // One dot per reachable position — hide the rest.
+  budgetIndicators.forEach((indicator, idx) => {
+    indicator.style.display = idx > budgetMaxIndex ? "none" : "";
+  });
+  if (budgetIndicators[0] && budgetIndicators[0].parentElement) {
+    budgetIndicators[0].parentElement.style.visibility =
+      budgetMaxIndex === 0 ? "hidden" : "";
+  }
+}
+
+function updateBudgetArrows() {
+  budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
+  budgetLeftArrow.style.cursor =
+    budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
+  budgetRightArrow.style.opacity =
+    budgetCurrentIndex >= budgetMaxIndex ? "0.5" : "1";
+  budgetRightArrow.style.cursor =
+    budgetCurrentIndex >= budgetMaxIndex ? "not-allowed" : "pointer";
 }
 
 function updateBudgetIndicators() {
@@ -368,6 +439,8 @@ function updateBudgetCarousel() {
       budgetCurrentIndex === 0
         ? 0
         : spacerWidth + (cardWidth + gap) * budgetCurrentIndex;
+    // Last position: stop with the final card flush right, never past it.
+    moveAmount = Math.min(moveAmount, budgetMaxMove);
   }
 
   budgetCarousel.style.transform = `translateX(-${moveAmount}px)`;
@@ -406,9 +479,17 @@ function loopBudgetCarousel(direction) {
   budgetCarousel.style.transform = `translateX(-${cloneMoveAmount}px)`;
   updateBudgetIndicators();
 
+  if (budgetLoopHandler) {
+    budgetCarousel.removeEventListener("transitionend", budgetLoopHandler);
+  }
+
   function onTransitionEnd(event) {
     if (event.propertyName !== "transform") return;
     budgetCarousel.removeEventListener("transitionend", onTransitionEnd);
+    budgetLoopHandler = null;
+    // Drop any inline momentum transition first — it's !important and would
+    // otherwise beat .budget-no-transition and animate the silent snap.
+    budgetCarousel.style.removeProperty("transition");
     budgetCarousel.classList.add("budget-no-transition");
     updateBudgetCarousel();
     // Force layout so the snap above lands before transitions come back on
@@ -416,22 +497,153 @@ function loopBudgetCarousel(direction) {
     void budgetCarousel.offsetHeight;
     budgetCarousel.classList.remove("budget-no-transition");
   }
+  budgetLoopHandler = onTransitionEnd;
   budgetCarousel.addEventListener("transitionend", onTransitionEnd);
 }
 
 // Touch/Swipe support for mobile
 let budgetTouchStartX = 0;
 let budgetTouchEndX = 0;
+let budgetLoopHandler = null;
 
 const budgetProductsContainer = document.querySelector(
   ".budget-products-container",
 );
+
+// Mobile drag + momentum: the track follows the finger while dragging, and
+// on release the flick velocity is projected forward so a fast/long swipe
+// glides across several cards instead of always stepping exactly one.
+// Landing is resolved from the final position (not index arithmetic), so it
+// still ends centered on a card and still loops via the clone cards.
+let budgetDrag = null;
+let budgetMomentumTimer = null;
+
+function getBudgetTranslateX() {
+  const t = window.getComputedStyle(budgetCarousel).transform;
+  if (!t || t === "none") return 0;
+  return new DOMMatrixReadOnly(t).m41;
+}
+
+function startBudgetDrag(touch) {
+  budgetDrag = {
+    startX: touch.clientX,
+    startY: touch.clientY,
+    baseX: 0,
+    axis: null,
+    samples: [],
+  };
+}
+
+function moveBudgetDrag(touch) {
+  if (!budgetDrag) return;
+  const dx = touch.clientX - budgetDrag.startX;
+  const dy = touch.clientY - budgetDrag.startY;
+
+  if (!budgetDrag.axis) {
+    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+    budgetDrag.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+    if (budgetDrag.axis === "y") {
+      // Vertical page scroll — leave the carousel alone entirely.
+      budgetDrag = null;
+      return;
+    }
+
+    // Horizontal drag confirmed: take over the track from wherever it is
+    // (possibly mid-glide or mid-loop), freezing it under the finger.
+    const currentX = getBudgetTranslateX();
+    if (budgetLoopHandler) {
+      budgetCarousel.removeEventListener("transitionend", budgetLoopHandler);
+      budgetLoopHandler = null;
+    }
+    clearTimeout(budgetMomentumTimer);
+    budgetCarousel.style.removeProperty("transition");
+    budgetCarousel.classList.add("budget-no-transition");
+    budgetCarousel.style.transform = `translateX(${currentX}px)`;
+
+    budgetDrag.startX = touch.clientX;
+    budgetDrag.baseX = currentX;
+    budgetDrag.samples.push({ x: touch.clientX, t: performance.now() });
+    return;
+  }
+
+  const now = performance.now();
+  budgetDrag.samples.push({ x: touch.clientX, t: now });
+  // Only the last ~100ms matter for release velocity.
+  while (budgetDrag.samples.length > 2 && now - budgetDrag.samples[0].t > 100) {
+    budgetDrag.samples.shift();
+  }
+
+  budgetCarousel.style.transform = `translateX(${budgetDrag.baseX + dx}px)`;
+}
+
+function endBudgetDrag() {
+  const drag = budgetDrag;
+  budgetDrag = null;
+  if (!drag || drag.axis !== "x") return;
+
+  const cardWidth = budgetCards[0].offsetWidth;
+  const trackGapRaw = window.getComputedStyle(budgetCarousel).columnGap;
+  const gap = trackGapRaw ? parseFloat(trackGapRaw) || 12 : 12;
+  const step = cardWidth + gap;
+  const containerWidth = budgetProductsContainer.getBoundingClientRect().width;
+  const centerOffset = (containerWidth - cardWidth) / 2;
+
+  const first = drag.samples[0];
+  const last = drag.samples[drag.samples.length - 1];
+  const elapsed = Math.max(1, last.t - first.t);
+  const velocity = (last.x - first.x) / elapsed; // px/ms, + = finger moved right
+
+  const releaseX = getBudgetTranslateX();
+  const projectedX = releaseX + velocity * 350;
+
+  // Track order: [clone-of-last(0)][card 1(1)]...[card N(N)][clone-of-first(N+1)]
+  const startPos = Math.round((-drag.baseX + centerOffset) / step);
+  let targetPos = Math.round((-projectedX + centerOffset) / step);
+
+  // A deliberate short swipe should still move at least one card.
+  const dragDistance = releaseX - drag.baseX;
+  if (targetPos === startPos && (Math.abs(dragDistance) > 50 || Math.abs(velocity) > 0.3)) {
+    targetPos += dragDistance < 0 ? 1 : -1;
+  }
+  targetPos = Math.max(0, Math.min(budgetTotalCards + 1, targetPos));
+
+  // Glide a bit longer the further it has to travel.
+  const cardsTravelled = Math.abs(releaseX - (-(targetPos * step - centerOffset))) / step;
+  const duration = Math.min(900, 400 + cardsTravelled * 120);
+  budgetCarousel.classList.remove("budget-no-transition");
+  budgetCarousel.style.setProperty(
+    "transition",
+    `transform ${duration}ms cubic-bezier(0.22, 0.61, 0.36, 1)`,
+    "important",
+  );
+  budgetMomentumTimer = setTimeout(() => {
+    budgetCarousel.style.removeProperty("transition");
+  }, duration + 50);
+
+  if (targetPos <= 0) {
+    loopBudgetCarousel("prev");
+  } else if (targetPos >= budgetTotalCards + 1) {
+    loopBudgetCarousel("next");
+  } else {
+    budgetCurrentIndex = targetPos - 1;
+    updateBudgetCarousel();
+  }
+}
 
 if (budgetProductsContainer) {
   budgetProductsContainer.addEventListener(
     "touchstart",
     (e) => {
       budgetTouchStartX = e.changedTouches[0].screenX;
+      if (isBudgetMobilePeekView()) startBudgetDrag(e.changedTouches[0]);
+    },
+    { passive: true },
+  );
+
+  budgetProductsContainer.addEventListener(
+    "touchmove",
+    (e) => {
+      if (budgetDrag) moveBudgetDrag(e.changedTouches[0]);
     },
     { passive: true },
   );
@@ -440,10 +652,18 @@ if (budgetProductsContainer) {
     "touchend",
     (e) => {
       budgetTouchEndX = e.changedTouches[0].screenX;
-      handleBudgetSwipe();
+      if (isBudgetMobilePeekView()) {
+        endBudgetDrag();
+      } else {
+        handleBudgetSwipe();
+      }
     },
     { passive: true },
   );
+
+  budgetProductsContainer.addEventListener("touchcancel", endBudgetDrag, {
+    passive: true,
+  });
 }
 
 function handleBudgetSwipe() {
@@ -453,7 +673,7 @@ function handleBudgetSwipe() {
   if (Math.abs(diff) > swipeThreshold) {
     if (diff > 0) {
       // Swiped left - show next card
-      if (budgetCurrentIndex < budgetTotalCards - 1) {
+      if (budgetCurrentIndex < budgetMaxIndex) {
         budgetCurrentIndex++;
         updateBudgetCarousel();
       } else if (isBudgetMobilePeekView()) {
@@ -477,10 +697,7 @@ budgetLeftArrow.addEventListener("click", () => {
     budgetCurrentIndex--;
     updateBudgetCarousel();
   }
-  // Disable arrow if at leftmost position
-  budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
-  budgetLeftArrow.style.cursor =
-    budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
+  updateBudgetArrows();
 });
 
 budgetRightArrow.addEventListener("click", () => {
@@ -489,41 +706,32 @@ budgetRightArrow.addEventListener("click", () => {
     budgetCurrentIndex++;
     updateBudgetCarousel();
   }
-  // Disable arrow if at rightmost position
-  budgetRightArrow.style.opacity =
-    budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
-  budgetRightArrow.style.cursor =
-    budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
+  updateBudgetArrows();
 });
 
 // Indicator click handlers
 budgetIndicators.forEach((indicator, idx) => {
   indicator.addEventListener("click", () => {
-    budgetCurrentIndex = idx;
+    budgetCurrentIndex = Math.min(idx, budgetMaxIndex);
     updateBudgetCarousel();
+    updateBudgetArrows();
   });
 });
 
 // Initialize
+recomputeBudgetLayout();
 updateBudgetCarousel();
-// Set initial arrow states
-budgetLeftArrow.style.opacity = "0.5";
-budgetLeftArrow.style.cursor = "not-allowed";
+updateBudgetArrows();
 
-// Handle window resize
+// Handle window resize — a different width can change how many cards fit,
+// so re-measure before repositioning.
 let budgetResizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(budgetResizeTimer);
   budgetResizeTimer = setTimeout(() => {
+    recomputeBudgetLayout();
     updateBudgetCarousel();
-    // Update arrow states after resize
-    budgetLeftArrow.style.opacity = budgetCurrentIndex === 0 ? "0.5" : "1";
-    budgetLeftArrow.style.cursor =
-      budgetCurrentIndex === 0 ? "not-allowed" : "pointer";
-    budgetRightArrow.style.opacity =
-      budgetCurrentIndex === budgetMaxIndex ? "0.5" : "1";
-    budgetRightArrow.style.cursor =
-      budgetCurrentIndex === budgetMaxIndex ? "not-allowed" : "pointer";
+    updateBudgetArrows();
   }, 250);
 });
 
@@ -610,9 +818,9 @@ function filterCardsByPrice() {
   // Reset carousel to first position
   budgetCurrentIndex = 0;
 
-  // Recalculate max index based on visible cards
-  const visibleCount = visibleCards.length;
-  const newMaxIndex = Math.max(0, visibleCount - budgetCardsToShow);
+  // Re-measure: hidden cards shrink the track, so fewer positions remain.
+  recomputeBudgetLayout();
+  const newMaxIndex = budgetMaxIndex;
 
   // Update carousel — routed through updateBudgetCarousel() rather than a
   // hardcoded translateX(0px) so mobile's centered-peek math (which needs
@@ -1841,7 +2049,75 @@ const collectionsSwiper = new Swiper(".collectionsSwiper", {
     });
 
     if (closestSlide) closestSlide.classList.add("is-center");
+    updateIndicators(closestSlide);
     ticking = false;
+  }
+
+  // Indicators: one dot per real slide. A centered clone maps to the real
+  // slide it duplicates, so the dot is already right before the loop jump.
+  const indicatorWrap = document.querySelector(".arrival-indicators");
+  const indicators = [];
+
+  function realIndexOf(slide) {
+    if (!slide) return 0;
+    if (slide.dataset.clone === "last") return realSlides.length - 1;
+    if (slide.dataset.clone === "first") return 0;
+    return Array.prototype.indexOf.call(realSlides, slide);
+  }
+
+  function updateIndicators(centerSlide) {
+    const activeIdx = realIndexOf(centerSlide);
+    indicators.forEach((dot, idx) => {
+      dot.classList.toggle("active", idx === activeIdx);
+    });
+  }
+
+  // Eased slide to a real slide — native smooth scroll gets cut short by
+  // scroll-snap in some browsers, so animate scrollLeft by hand with snap
+  // paused. Scroll events still fire every frame, so the scale/content
+  // animation above keeps running in step.
+  let slideAnimFrame = null;
+  function slideTo(slide) {
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const rect = slide.getBoundingClientRect();
+    const start = wrapper.scrollLeft;
+    const distance =
+      rect.left + rect.width / 2 - (wrapperRect.left + wrapperRect.width / 2);
+    const duration = 500;
+    let startTime = null;
+
+    if (slideAnimFrame) cancelAnimationFrame(slideAnimFrame);
+    wrapper.style.scrollSnapType = "none";
+
+    function step(time) {
+      if (startTime === null) startTime = time;
+      const progress = Math.min((time - startTime) / duration, 1);
+      const eased =
+        progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      wrapper.scrollLeft = start + distance * eased;
+
+      if (progress < 1) {
+        slideAnimFrame = requestAnimationFrame(step);
+      } else {
+        slideAnimFrame = null;
+        wrapper.style.scrollSnapType = "";
+      }
+    }
+
+    slideAnimFrame = requestAnimationFrame(step);
+  }
+
+  if (indicatorWrap) {
+    indicatorWrap.innerHTML = "";
+    realSlides.forEach((slide, idx) => {
+      const dot = document.createElement("span");
+      dot.className = "arrival-indicator" + (idx === 0 ? " active" : "");
+      dot.addEventListener("click", () => slideTo(slide));
+      indicatorWrap.appendChild(dot);
+      indicators.push(dot);
+    });
   }
 
   function jumpTo(slide) {
