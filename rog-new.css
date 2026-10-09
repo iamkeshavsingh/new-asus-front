@@ -3116,6 +3116,12 @@ body {
     transition: none !important;
   }
 
+  /* Horizontal drags are handled by the JS drag/momentum code in
+     rog-new.js; let the browser keep only vertical page scrolling here. */
+  .shop-by-budget-section .budget-products-container {
+    touch-action: pan-y;
+  }
+
   /* Arrows are for pointer-driven desktop paging; mobile relies on the
      swipe handler (handleBudgetSwipe) bound to this container. */
   .shop-by-budget-section .budget-carousel-arrow-left,
@@ -11876,4 +11882,21 @@ a.navbar-brand img {
     top: 330px;
     left: 20%;
   }
+}
+/* New Arrivals Mobile Indicators (section itself is hidden >=1024px) */
+.arrival-indicators {
+  padding: 24px 0 30px;
+}
+
+.arrival-indicator {
+  width: 10px;
+  height: 10px;
+  background: #53565a;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.arrival-indicator.active {
+  background: #f51928;
 }
